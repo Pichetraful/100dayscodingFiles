@@ -48,7 +48,7 @@ for j in range(3):
             tim.dot(20,(red, green, blue))
             tim.penup()
             tim.forward(50)
-            tim.pendown()
+            # tim.pendown()
             if i in (9, 19, 28):
                 print(i)
                 xpos = -350
@@ -56,7 +56,7 @@ for j in range(3):
                 tim.penup()
                 tim.goto(xpos, ypos + move_increase)
                 tim.forward(50)
-                tim.pendown()
+                # tim.pendown()
             else:
                 round_going = True
 
