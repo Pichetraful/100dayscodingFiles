@@ -1,36 +1,32 @@
-import turtle
+# student_dict = {
+#     "student": ["Angela", "James", "Lily"],
+#     "score": [56, 76, 98]
+# }
+#
+# #Looping through dictionaries:
+# for (key, value) in student_dict.items():
+#     #Access key and value
+#     pass
+
 import pandas
+# student_data_frame = pandas.DataFrame(student_dict)
+nato_alphabet = pandas.read_csv("nato_phonetic_alphabet.csv")
+#Loop through rows of a data frame
+# for (index, row) in student_data_frame.iterrows():
+#     #Access index and row
+#     #Access row.student or row.score
+#     pass
 
-screen = turtle.Screen()
-screen.title("U.S. State Game")
-image = "blank_states_img.gif"
-screen.addshape(image)
+# Keyword Method with iterrows()
+nato_alphabet_dict = {row["letter"]:row["code"] for (index, row) in nato_alphabet.iterrows()}
+# print(nato_alphabet_dict)
+#TODO 1. Create a dictionary in this format:
+# {"A": "Alfa", "B": "Bravo"}
 
-turtle.shape(image)
+#TODO 2. Create a list of the phonetic code words from a word that the user inputs.
 
+name_to_divide = input("Enter a word: ").upper()
 
+name_to_alphabet = [nato_alphabet_dict[letter] for letter in name_to_divide]
 
-data = pandas.read_csv("50_states.csv")
-all_states = data.state.to_list()
-guessed_states = []
-
-while len(guessed_states) < 50:
-    answer_state = screen.textinput(title=f"{len(guessed_states)}/50 Guess the State",
-                                    prompt="What's another state's name?:").title()
-    if answer_state == "Exit":
-        missing_states = []
-        for state in all_states:
-            if state not in guessed_states:
-                missing_states.append(state)
-        new_data = pandas.DataFrame(missing_states)
-        new_data.to_csv("missing_states.csv")
-        break
-    if answer_state in all_states:
-        guessed_states.append(answer_state)
-        t = turtle.Turtle()
-        t.hideturtle()
-        t.penup()
-        state_data = data[data.state == answer_state]
-        t.goto(int(state_data.x), int(state_data.y))
-        t.write(answer_state)
-
+print(name_to_alphabet)
